@@ -1,0 +1,11 @@
+
+configurationFrom.settings_form:
+  path: 'mymodule/config'
+  defaults:
+    _form: '\Drupal\configurationFrom\Form\SettingsForm'
+    _title: 'Configuration Form'
+  requirements:
+    _permission: 'administer content'
+  options:
+    _admin_route: TRUE
+

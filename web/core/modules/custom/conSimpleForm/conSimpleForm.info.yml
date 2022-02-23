@@ -1,0 +1,5 @@
+name: Simple form
+description: Simple form in configuration module in drupal session 3
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
