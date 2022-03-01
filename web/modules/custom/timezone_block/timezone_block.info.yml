@@ -1,0 +1,8 @@
+name: Default Time Zone Block
+description: Session 3 - Get Started with Drupal Module Development. This block is presenting Indian , central and eastern time zone
+package: Abhishek
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+dependencies:
+  - block

@@ -1,0 +1,7 @@
+conSimpleForm.simple_form:
+  path: 'mymodule/simple'
+  defaults:
+    _form: '\Drupal\conSimpleForm\Form\SimpleForm'
+    _title: 'Simple Form'
+  requirements:
+    _permission: 'administer mymodule configuration'
