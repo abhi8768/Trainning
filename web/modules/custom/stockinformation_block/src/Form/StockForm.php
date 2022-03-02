@@ -1,37 +1,50 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\stockinformation_block\Form\StockForm.
- */
-
 namespace Drupal\stockinformation_block\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class StockForm.
- *
- * @package Drupal\stockinformation_block\Form
+ * This class basically generate a form of stock information.
  */
 class StockForm extends ConfigFormBase {
 
   /**
-   * {@inheritdoc}
+   * Editable congif name function.
+   *
+   * @return setting
+   *   Return editable config name.
    */
-  protected function getEditableConfigNames() {
-    return [
+  protected function getEditableConfigNames()
+  {
+    $setting = [
       'stockinformation_block.settings',
     ];
+    return $setting;
   }
-
+  /**
+   * Set form id.
+   *
+   * @return formId
+   *   Return form id.
+   */
   public function getFormId()
   {
-    return 'StockForm';
+    $formId = 'StockForm';
+    return $formId;
   }
 
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  /**
+   * Generate form.
+   *
+   * @param array $form
+   *   Form buldup array.
+   * @param FormStateInterface $form_state
+   *   An.
+   */
+  public function buildForm(array $form, FormStateInterface $form_state)
+  {
     $config = $this->config('stockinformation_block.settings');
 
     $form['companyName'] = [
@@ -53,11 +66,14 @@ class StockForm extends ConfigFormBase {
     ];
     return parent::buildForm($form, $form_state);
   }
-
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-    parent::validateForm($form, $form_state);
-  }
-
+  /**
+   * Submit handler function.
+   *
+   * @param array $form
+   *   Form buldup array.
+   * @param FormStateInterface $form_state
+   *   Aa.
+   */
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
     parent::submitForm($form, $form_state);

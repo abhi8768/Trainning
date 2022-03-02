@@ -1,5 +1,5 @@
 name: Stock Information Block
-description: This block is showing Stock information using stock api
+description: Session 3 - Blocks - Exercises
 package: Abhishek
 type: module
 core: 8.x

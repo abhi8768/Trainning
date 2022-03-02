@@ -13,61 +13,83 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("stockinfoshowBlock"),
  * )
  **/
+/**
+ * This block is showing stock information data.
+ */
 class StockInfoShowBlock extends BlockBase
 {
+  /**
+   * Generate a block.
+   *
+   * @return block
+   *   Return a block data.
+   */
+
   public function build()
   {
-    return [
-        '#markup' => $this->getValue(),
-        '#cache'  => [
-          'max-age' => 0,
-        ],
+    $block = [
+      '#markup' => $this->getValue(),
+      '#cache'  => [
+        'max-age' => 0,
+      ],
     ];
+    return $block;
   }
-
+  /**
+   * Fetch the data of a form.
+   *
+   * @return msg
+   *   Return a message data.
+   */
   private function getValue()
   {
     $config = \Drupal::config('stockinformation_block.settings');
     $companyName = $config->get('companyName');
-    $start_date = $config->get('start_date');
-    $end_date = $config->get('end_date');
+    $startDate = $config->get('start_date');
+    $endDate = $config->get('end_date');
 
     $desUrl = 'https://api.tiingo.com/tiingo/daily/company_token?token=34f412d51db4046a81f4180aad2233c41df5d3b1';
     $companyName = strtolower($companyName);
     $desUrl = str_replace("company_token", $companyName, $desUrl);
-    $result1 = $this->callAPI($desUrl);
-    $data1 = json_decode($result1);
-    $company_name = $data1->name;
-    $description = $data1->description;
+    $resultF = $this->callApi($desUrl);
+    $dataFirst = json_decode($resultF);
+    $company_name = $dataFirst->name;
+    $description = $dataFirst->description;
 
-    if($start_date == '')
-    {
-      $start_date = date('Y-m-d');
+    if ($startDate == '') {
+      $startDate = date('Y-m-d');
     }
-    if($end_date == '')
-    {
-      $end_date = date('Y-m-d');
+    if ($endDate == '') {
+      $endDate = date('Y-m-d');
     }
     $priceUrl = 'https://api.tiingo.com/tiingo/daily/aapl/prices?startDate=start_date&endDate=end_date&token=34f412d51db4046a81f4180aad2233c41df5d3b1';
     $companyName = strtolower($companyName);
-    $priceUrl = str_replace("start_date", $start_date, $priceUrl);
-    $priceUrl = str_replace("end_date", $end_date, $priceUrl);
-    $result2 = $this->callAPI($priceUrl);
-    $data = json_decode($result2);
+    $priceUrl = str_replace("start_date", $startDate, $priceUrl);
+    $priceUrl = str_replace("end_date", $endDate, $priceUrl);
+    $resultS = $this->callApi($priceUrl);
+    $data = json_decode($resultS);
     $priceMsg = '';
-    foreach($data as $value)
-    {
+    foreach ($data as $value) {
       $fdate = $value->date;
-      $max_price = $value->high;
-      $low_price = $value->low;
-      $priceMsg.= 'Date : ' . $fdate . '; Max Price : ' . $max_price . '; Low Prie : ' . $low_price . '<br><br>';
+      $maxPrice = $value->high;
+      $lowPrice = $value->low;
+      $priceMsg .= 'Date : ' . $fdate . '; Max Price : ' . $maxPrice . '; Low Prie : ' . $lowPrice . '<br><br>';
     }
 
     $nameDesc = 'Company Name : ' . $company_name . '<br> Description : ' . $description . '<br><br>';
     $msg = $nameDesc . $priceMsg;
     return $msg;
   }
-  private function callAPI($url)
+  /**
+   * This function basically use the curl.
+   *
+   * @param string $url
+   *   Url is used for fetching data.
+   *
+   * @return output
+   *   Return the curl value.
+   */
+  private function callApi($url)
   {
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -76,6 +98,5 @@ class StockInfoShowBlock extends BlockBase
     curl_close($curl);
     return $output;
   }
-
 
 }

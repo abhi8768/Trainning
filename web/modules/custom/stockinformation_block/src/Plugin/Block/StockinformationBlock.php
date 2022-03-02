@@ -3,7 +3,6 @@
 namespace Drupal\stockinformation_block\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Provides a 'Stock Information' Block.
@@ -14,11 +13,18 @@ use Drupal\Core\Form\FormStateInterface;
  *   category = @Translation("abhi"),
  * )
  */
-class StockinformationBlock extends BlockBase {
-
+/**
+ * Generate a block with a form.
+ */
+class StockinformationBlock extends BlockBase
+{
   /**
-   * {@inheritdoc}
+   * Build function simply generate a block.
+   *
+   * @return form
+   *   Return form data.
    */
+
   public function build()
   {
     $form = \Drupal::formBuilder()->getForm('Drupal\stockinformation_block\Form\StockForm');
