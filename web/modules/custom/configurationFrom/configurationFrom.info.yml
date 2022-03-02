@@ -1,7 +1,0 @@
-name: configurationFrom
-type: module
-description: Session 3 - Form API - Exercises
-package: Abhishek
-core: 8.x
-core_version_requirement: ^8 || ^9
-package: Custom
