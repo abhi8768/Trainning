@@ -13,7 +13,8 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("defaultTimeZoneBlock"),
  * )
  **/
-class TimezoneBlock extends BlockBase {
+class TimezoneBlock extends BlockBase
+{
   /**
    * This function is for creating a block.
    *
@@ -31,7 +32,6 @@ class TimezoneBlock extends BlockBase {
     ];
     return $returnArray;
   }
-
 /**
  * Generate final message for different time zone.
  *

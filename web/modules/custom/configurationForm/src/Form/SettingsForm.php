@@ -40,8 +40,8 @@ class SettingsForm extends ConfigFormBase
    *
    * @param array $form
    *   Form buldup array.
-   * @param FormStateInterface $form_state
-   *   An.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    *
    * @return form
    *   Form fields.
@@ -80,8 +80,8 @@ class SettingsForm extends ConfigFormBase
    *
    * @param array $form
    *   Form buldup array.
-   * @param FormStateInterface $form_state
-   *   Aa.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
