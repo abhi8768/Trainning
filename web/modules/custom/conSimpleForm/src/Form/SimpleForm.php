@@ -27,8 +27,8 @@ class SimpleForm extends FormBase
    *
    * @param array $form
    *   Form buldup array.
-   * @param FormStateInterface $form_state
-   *   An.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    *
    * @return form
    *   Form fields.
@@ -93,8 +93,8 @@ class SimpleForm extends FormBase
    *
    * @param array $form
    *   Form buldup array.
-   * @param FormStateInterface $form_state
-   *   An.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    */
   public function addMore(array $form, FormStateInterface $form_state)
   {
@@ -108,8 +108,8 @@ class SimpleForm extends FormBase
    *
    * @param array $form
    *   Form buldup array.
-   * @param FormStateInterface $form_state
-   *   An.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    *
    * @return returnValue
    *   Return name field set.
@@ -125,8 +125,8 @@ class SimpleForm extends FormBase
    *
    * @param array $form
    *   Form buldup array.
-   * @param FormStateInterface $form_state
-   *   An.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state)
   {
