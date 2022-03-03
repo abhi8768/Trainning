@@ -3,6 +3,7 @@
 namespace Drupal\temperature_block\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use GuzzleHttp\Client;
 
 /**
  * Provides a 'Temparature Block' Block.
@@ -45,8 +46,27 @@ class TemperatureBlock extends BlockBase
     $city = $config->get('city');
     $apiKey = $config->get('api_key');
     $apiEndpoint = $config->get('api_endpoint');
-    $value = $this->callApi($city, $apiKey, $apiEndpoint);
-    $msg = 'Current Temperature for ' . $city . ' : ' . $value . ' C';
+    $url = 'https://' . $apiEndpoint;
+
+     $client = new Client([
+      'base_uri' => $url,
+    ]);
+
+    $response = $client->request('GET', '', [
+        'query' => [
+          'q' => $city,
+          'appid' => $apiKey,
+        ]
+    ]);
+    $output = $response->getBody();
+    $data = json_decode($output);
+    $temp = $data->main->temp;
+    $tempInCelcius = $temp - 273;
+
+
+    //$value = $this->callApi($city, $apiKey, $apiEndpoint);
+
+    $msg = 'Current Temperature for ' . $city . ' : ' . $tempInCelcius . ' C';
     return $msg;
   }
   /**
