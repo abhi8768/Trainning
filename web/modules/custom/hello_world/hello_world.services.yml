@@ -1,0 +1,3 @@
+services:
+ hello_world.say:
+   class: Drupal\hello_world\Controller\HelloServices
