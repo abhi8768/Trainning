@@ -42,6 +42,7 @@ class StockInfoShowBlock extends BlockBase
   private function getValue()
   {
     $config = \Drupal::config('stockinformation_block.settings');
+
     $companyName = $config->get('companyName');
     $startDate = $config->get('start_date');
     $endDate = $config->get('end_date');

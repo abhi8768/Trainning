@@ -63,9 +63,6 @@ class TemperatureBlock extends BlockBase
     $temp = $data->main->temp;
     $tempInCelcius = $temp - 273;
 
-
-    //$value = $this->callApi($city, $apiKey, $apiEndpoint);
-
     $msg = 'Current Temperature for ' . $city . ' : ' . $tempInCelcius . ' C';
     return $msg;
   }
