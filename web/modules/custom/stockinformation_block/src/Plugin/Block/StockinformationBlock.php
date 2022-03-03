@@ -13,9 +13,6 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("abhi"),
  * )
  */
-/**
- * Generate a block with a form.
- */
 class StockinformationBlock extends BlockBase
 {
   /**

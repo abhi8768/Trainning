@@ -3,6 +3,7 @@
 namespace Drupal\stockinfoshow_block\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use GuzzleHttp\Client;
 
 /**
  * Provides a 'Stock Information Show Block' Block.
@@ -13,9 +14,6 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("stockinfoshowBlock"),
  * )
  **/
-/**
- * This block is showing stock information data.
- */
 class StockInfoShowBlock extends BlockBase
 {
   /**
@@ -48,11 +46,22 @@ class StockInfoShowBlock extends BlockBase
     $startDate = $config->get('start_date');
     $endDate = $config->get('end_date');
 
-    $desUrl = 'https://api.tiingo.com/tiingo/daily/company_token?token=34f412d51db4046a81f4180aad2233c41df5d3b1';
+    $desUrl = 'https://api.tiingo.com/tiingo/daily/company_token';
     $companyName = strtolower($companyName);
     $desUrl = str_replace("company_token", $companyName, $desUrl);
-    $resultF = $this->callApi($desUrl);
-    $dataFirst = json_decode($resultF);
+
+    $client = new Client([
+      'base_uri' => $desUrl,
+    ]);
+
+    $response = $client->request('GET', '', [
+        'query' => [
+          'token' => '34f412d51db4046a81f4180aad2233c41df5d3b1',
+        ]
+    ]);
+
+    $body = $response->getBody();
+    $dataFirst = json_decode($body);
     $company_name = $dataFirst->name;
     $description = $dataFirst->description;
 
@@ -62,12 +71,25 @@ class StockInfoShowBlock extends BlockBase
     if ($endDate == '') {
       $endDate = date('Y-m-d');
     }
-    $priceUrl = 'https://api.tiingo.com/tiingo/daily/aapl/prices?startDate=start_date&endDate=end_date&token=34f412d51db4046a81f4180aad2233c41df5d3b1';
+
+    $priceUrl = 'https://api.tiingo.com/tiingo/daily/compName/prices';
     $companyName = strtolower($companyName);
-    $priceUrl = str_replace("start_date", $startDate, $priceUrl);
-    $priceUrl = str_replace("end_date", $endDate, $priceUrl);
-    $resultS = $this->callApi($priceUrl);
+    $priceUrl = str_replace("compName", $companyName, $priceUrl);
+
+    $clientPrice = new Client([
+      'base_uri' => $priceUrl,
+    ]);
+    $responsedata = $clientPrice->request('GET', '', [
+        'query' => [
+          'startDate' => $startDate,
+          'endDate' => $endDate,
+          'token' => '34f412d51db4046a81f4180aad2233c41df5d3b1',
+        ]
+    ]);
+
+    $resultS = $responsedata->getBody();
     $data = json_decode($resultS);
+
     $priceMsg = '';
     foreach ($data as $value) {
       $fdate = $value->date;
@@ -79,24 +101,6 @@ class StockInfoShowBlock extends BlockBase
     $nameDesc = 'Company Name : ' . $company_name . '<br> Description : ' . $description . '<br><br>';
     $msg = $nameDesc . $priceMsg;
     return $msg;
-  }
-  /**
-   * This function basically use the curl.
-   *
-   * @param string $url
-   *   Url is used for fetching data.
-   *
-   * @return output
-   *   Return the curl value.
-   */
-  private function callApi($url)
-  {
-    $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-    $output = curl_exec($curl);
-    curl_close($curl);
-    return $output;
   }
 
 }

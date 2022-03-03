@@ -13,10 +13,6 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("temperatureBlock"),
  * )
  */
-
-/**
- * This block is basically show the temperature.
- */
 class TemperatureBlock extends BlockBase
 {
   /**
