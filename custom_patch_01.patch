@@ -1,0 +1,11 @@
+diff --git a/web/robots.txt b/web/robots.txt
+index a32af4ca..92f5c593 100644
+--- a/web/robots.txt
++++ b/web/robots.txt
+@@ -59,6 +59,5 @@ Disallow: /index.php/user/password
+ Disallow: /index.php/user/register
+ Disallow: /index.php/user/login
+ Disallow: /index.php/user/logout
+-
+ User-agent: *
+ Disallow: /

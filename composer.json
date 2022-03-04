@@ -21,6 +21,8 @@
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
         "drush/drush": "^11.0",
+        "guzzlehttp/guzzle": "^6.5.5",
+        "symfony/dependency-injection": "^4.4.34",
         "symfony/routing": "^4.4"
     },
     "conflict": {
@@ -35,6 +37,11 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true
         }
+    },
+    "scripts": {
+        "post-drupal-scaffold-cmd": [
+            "patch -p1 < custom_patch_01.patch"
+        ]
     },
     "extra": {
         "drupal-scaffold": {

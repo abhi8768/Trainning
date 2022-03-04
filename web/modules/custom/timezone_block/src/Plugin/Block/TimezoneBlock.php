@@ -13,9 +13,6 @@ use Drupal\Core\Block\BlockBase;
  *   category = @Translation("defaultTimeZoneBlock"),
  * )
  **/
-/**
- * This block is showing default timezone.
- */
 class TimezoneBlock extends BlockBase
 {
   /**

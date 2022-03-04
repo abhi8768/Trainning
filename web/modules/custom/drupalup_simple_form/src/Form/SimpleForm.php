@@ -28,8 +28,8 @@ class SimpleForm extends FormBase
    *
    * @param array $form
    *   Form buldup array.
-   * @param FormStateInterface $form_state
-   *   An.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    *
    * @return form
    *   Form fields.
@@ -53,10 +53,8 @@ class SimpleForm extends FormBase
    *
    * @param array $form
    *   Form data.
-   * @param FormStateInterface $form_state
-   *
-   * @return msg
-   *   Return message.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   It will retrieve the value of form.
    */
 
   public function submitForm(array &$form, FormStateInterface $form_state)
