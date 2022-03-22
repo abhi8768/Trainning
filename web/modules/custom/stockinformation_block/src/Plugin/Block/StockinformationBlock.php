@@ -16,8 +16,9 @@ use Drupal\core\Logger\LoggerChannelFactoryInterface;
  *   id = "stockinfoBlock",
  *   admin_label = @Translation("Stock Information block"),
  * )
- **/
+ */
 class StockinformationBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
   /**
    * An http client.
    *
@@ -43,6 +44,7 @@ class StockinformationBlock extends BlockBase implements ContainerFactoryPluginI
       $container->get('logger.factory')
     );
   }
+
   /**
    * Construct.
    *
@@ -62,6 +64,7 @@ class StockinformationBlock extends BlockBase implements ContainerFactoryPluginI
     $this->httpclient = $http_client;
     $this->logger = $logger;
   }
+
   /**
    * Method to return the values to block.
    *
@@ -94,6 +97,7 @@ class StockinformationBlock extends BlockBase implements ContainerFactoryPluginI
       ],
     ];
   }
+
   /**
    * Block form function is used to create a form.
    *
@@ -134,7 +138,6 @@ class StockinformationBlock extends BlockBase implements ContainerFactoryPluginI
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   It will retrieve the value of form.
    */
-
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->setConfigurationValue('company_symbol', $form_state->getValue('company_symbol'));
     $this->setConfigurationValue('start_date', $form_state->getValue('start_date'));
@@ -165,8 +168,7 @@ class StockinformationBlock extends BlockBase implements ContainerFactoryPluginI
       $response = $this->httpclient->get($service_url);
       $output = json_decode($response->getBody(), TRUE);
       return $output;
-    }
-    catch (\Exception $e) {
+    } catch (\Exception $e) {
       $this->logger->get('widget')->error($e->getMessage());
     }
   }
