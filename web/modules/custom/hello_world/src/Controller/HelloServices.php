@@ -5,8 +5,8 @@ namespace Drupal\hello_world\Controller;
 /**
  * Simple hello world class generate hello world information.
  */
-class HelloServices
-{
+class HelloServices {
+
   /**
    * Print hello world with good morning.
    *
@@ -16,9 +16,7 @@ class HelloServices
    * @return message
    *   hello name with msg
    */
-
-  public function sayHello($name = '')
-  {
+  public function sayHello($name = '') {
     if (empty($name)) {
       $hello = 'Hello World!';
     } else {
@@ -37,5 +35,4 @@ class HelloServices
     $message = $hello . ' ' . $msg . "!";
     return $message;
   }
-
 }

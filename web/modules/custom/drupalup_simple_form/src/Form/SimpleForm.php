@@ -8,17 +8,15 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Our simple form class.
  */
-class SimpleForm extends FormBase
-{
+class SimpleForm extends FormBase {
+
   /**
    * This function is for form id.
    *
    * @return formId
    *   Return only form id.
    */
-
-  public function getFormId()
-  {
+  public function getFormId() {
     $formId = 'drupalup_simple_form';
     return $formId;
   }
@@ -34,8 +32,7 @@ class SimpleForm extends FormBase
    * @return form
    *   Form fields.
    */
-  public function buildForm(array $form, FormStateInterface $form_state)
-  {
+  public function buildForm(array $form, FormStateInterface $form_state) {
     $form['time'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Time'),
@@ -56,9 +53,7 @@ class SimpleForm extends FormBase
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   It will retrieve the value of form.
    */
-
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $time = $form_state->getValue('time');
     if ($time > "12" && $time < "15") {
       $msg = 'Good Noon';
@@ -67,5 +62,4 @@ class SimpleForm extends FormBase
     }
     \Drupal::messenger()->addMessage($msg);
   }
-
 }

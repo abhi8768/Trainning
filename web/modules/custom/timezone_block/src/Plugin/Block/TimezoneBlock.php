@@ -12,18 +12,16 @@ use Drupal\Core\Block\BlockBase;
  *   admin_label = @Translation("Default Time Zone Block"),
  *   category = @Translation("defaultTimeZoneBlock"),
  * )
- **/
-class TimezoneBlock extends BlockBase
-{
+ */
+class TimezoneBlock extends BlockBase {
+
   /**
    * This function is for creating a block.
    *
    * @return returnArray
    *   Display block message.
    */
-
-  public function build()
-  {
+  public function build() {
     $returnArray = [
       '#markup' => $this->getValue(),
       '#cache'  => [
@@ -33,14 +31,13 @@ class TimezoneBlock extends BlockBase
     return $returnArray;
   }
 
-/**
- * Generate final message for different time zone.
- *
- * @return value
- *   Display final message.
- */
-  private function getValue()
-  {
+  /**
+   * Generate final message for different time zone.
+   *
+   * @return value
+   *   Display final message.
+   */
+  private function getValue() {
     date_default_timezone_set('Asia/Kolkata');
     $indTime = date('d-m-Y H:i');
 
@@ -53,5 +50,4 @@ class TimezoneBlock extends BlockBase
     $value = 'Indian Time : ' . $indTime . '<br>Eastern Time : ' . $esternTime . '<br>Central Time : ' . $centralTime;
     return $value;
   }
-
 }
