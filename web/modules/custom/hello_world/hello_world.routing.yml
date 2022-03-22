@@ -14,4 +14,3 @@ hello.welcome_name:
     name: 'world '
   requirements:
     _permission: 'access content'
-

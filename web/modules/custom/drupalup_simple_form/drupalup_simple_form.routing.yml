@@ -5,3 +5,4 @@ drupalup_simple_form.simple_form:
     _title: 'Simple Form'
   requirements:
     _permission: 'access content'
+
