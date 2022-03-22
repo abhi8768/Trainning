@@ -1,7 +1,0 @@
-name: Hello World Module
-description: Session 3 - Get Started with Drupal Module Development. This block is print simple hello world module.
-package: Abhishek
-type: module
-version: 1.0
-core: 8.x
-core_version_requirement: ^8 || ^9
